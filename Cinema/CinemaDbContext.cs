@@ -1,4 +1,4 @@
-namespace Cinema.Domain
+namespace Cinema
 {
     using System;
     using System.Data.Entity;
@@ -8,7 +8,7 @@ namespace Cinema.Domain
     public partial class CinemaDbContext : DbContext
     {
         public CinemaDbContext()
-            : base("name=CinemaDbContext")
+            : base("CinemaDbContext")
         {
         }
 
@@ -24,7 +24,7 @@ namespace Cinema.Domain
                 .HasMany(e => e.Tickets)
                 .WithRequired(e => e.Asiento)
                 .WillCascadeOnDelete(false);
-             
+
             modelBuilder.Entity<Funcion>()
                 .HasMany(e => e.Tickets)
                 .WithRequired(e => e.Funcion)
@@ -45,5 +45,6 @@ namespace Cinema.Domain
                 .WithRequired(e => e.Sala)
                 .WillCascadeOnDelete(false);
         }
+
     }
 }

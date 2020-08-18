@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinema.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,9 @@ namespace Cinema.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var movieList = new List<PeliculaVM>();
+
+            return View(movieList);
         }
 
         public ActionResult About()
