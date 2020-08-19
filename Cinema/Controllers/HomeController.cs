@@ -7,11 +7,11 @@ using System.Web.Mvc;
 
 namespace Cinema.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            var movieList = new List<PeliculaVM>();
+            var movieList = business.GetMoviesFromTmdb();
 
             return View(movieList);
         }

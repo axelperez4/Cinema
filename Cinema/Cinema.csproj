@@ -55,6 +55,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -129,6 +132,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Business.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Entities\Asiento.cs" />
     <Compile Include="CinemaDbContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -143,6 +147,10 @@
     <Compile Include="Migrations\202008180753257_Second.cs" />
     <Compile Include="Migrations\202008180753257_Second.Designer.cs">
       <DependentUpon>202008180753257_Second.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008190340452_Entities to upper camel case,add more fields to Pelicula.cs" />
+    <Compile Include="Migrations\202008190340452_Entities to upper camel case,add more fields to Pelicula.Designer.cs">
+      <DependentUpon>202008190340452_Entities to upper camel case,add more fields to Pelicula.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\PeliculaVM.cs" />
@@ -215,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008180753257_Second.resx">
       <DependentUpon>202008180753257_Second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008190340452_Entities to upper camel case,add more fields to Pelicula.resx">
+      <DependentUpon>202008190340452_Entities to upper camel case,add more fields to Pelicula.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

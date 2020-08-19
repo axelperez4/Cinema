@@ -11,13 +11,13 @@ namespace Cinema
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sala()
         {
-            Asientos = new HashSet<Asiento>();
-            Funciones = new HashSet<Funcion>();
+            Asientos = new List<Asiento>();
+            Funciones = new List<Funcion>();
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int sala_id { get; set; }
+        public int Sala_id { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asiento> Asientos { get; set; }
