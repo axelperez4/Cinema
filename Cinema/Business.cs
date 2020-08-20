@@ -11,6 +11,7 @@ namespace Cinema
 {
     public class Business
     {
+
         public List<PeliculaVM> GetMoviesFromTmdb()
         {
             var cinemaContext = new CinemaDbContext();
@@ -60,20 +61,28 @@ namespace Cinema
             }
 
             cinemaContext.SaveChanges();
-            var VmMovieList = listOfAvailableMovies.Select(x =>
-                                                    new PeliculaVM()
-                                                    {
-                                                        Id = x.Pelicula_id,
-                                                        Title = x.Titulo,
-                                                        Tagline = x.Tagline,
-                                                        Overview = x.Descripcion,
-                                                        VoteAvarage = x.Votacion,
-                                                        Runtime = x.Duracion,
-                                                        Adult = x.Adultos,
-                                                        PosterPath = x.PosterPath
-                                                    }).ToList();
+            var VmMovieList = listOfAvailableMovies.Select(x => GenerarPeliculaVM(x)).ToList();
 
             return VmMovieList;
+        }
+
+        public OrdenVM GenerarOrden(int id)
+        {
+            var orden = new OrdenVM();
+            var cinemaContext = new CinemaDbContext();
+            var pelicula = cinemaContext.Peliculas.First(x => x.Pelicula_id == id);
+            var funciones = pelicula.Funciones.Where(x => x.Fecha < DateTime.Now).ToList();
+
+            //Asignar valores para alimentar dropdowns
+            orden.Movie = GenerarPeliculaVM(pelicula);
+            orden.Funciones = funciones.Select(x => 
+                                new System.Web.Mvc.SelectListItem
+                                {
+                                    Text = String.Format("{0} | {1} | Q.{2}", x.Fecha.ToShortDateString(), x.Fecha.TimeOfDay.ToString(), x.Precio.ToString()),
+                                    Value = x.Funcion_id.ToString()
+                                }
+            );
+            return orden;
         }
 
         private object GetApiKey()
@@ -84,6 +93,31 @@ namespace Cinema
                 throw new Exception("Error - Api Key is missing.");
 
             return apiKey;
+        }
+
+        private PeliculaVM GenerarPeliculaVM(Pelicula pelicula)
+        {
+            return new PeliculaVM
+            {
+                Id = pelicula.Pelicula_id,
+                Title = pelicula.Titulo,
+                Tagline = pelicula.Tagline,
+                Overview = pelicula.Descripcion,
+                VoteAvarage = pelicula.Votacion,
+                Runtime = pelicula.Duracion,
+                Adult = pelicula.Adultos,
+                PosterPath = pelicula.PosterPath
+            };
+        }
+
+        private FuncionVM GenerarFuncionVM(Funcion funcion)
+        {
+            return new FuncionVM
+            {
+                Id = funcion.Funcion_id,
+                Price = funcion.Precio,
+                Date = funcion.Fecha
+            };
         }
     }
 }

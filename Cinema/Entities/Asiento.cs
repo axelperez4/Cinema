@@ -16,7 +16,7 @@ namespace Cinema
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Asiento_id { get; set; }
 
         public int Sala_id { get; set; }

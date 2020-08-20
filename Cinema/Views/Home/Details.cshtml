@@ -1,0 +1,74 @@
+﻿@model Cinema.Models.OrdenVM
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+
+<div class="buster-light">
+    <div class="page-single movie_list">
+        <div class="container">
+            <div class="row ipad-width2">
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="movie-item-style-2">
+                        <img src="@String.Format("https://image.tmdb.org/t/p/w500/{0}", Model.Movie.PosterPath)" alt="">
+                        <div class="mv-item-infor">
+                            <h6>@Html.ActionLink(Model.Movie.Title, "Details", new { Id = Model.Movie.Id })</h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>@Model.Movie.VoteAvarage</span> /10</p>
+                            <p class="describe">@Model.Movie.Overview</p>
+                            <p class="run-time"> Duración: @Model.Movie.Runtime’</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Elige tu función:</h1>
+        <hr />
+        @Html.DropDownListFor(x => x.FuncionId, Model.Funciones, "")
+    </div>
+    <br />
+    <div class="container">
+        <h1>Elige tu asiento:</h1>
+        <hr />
+        <form id="form1" runat="server">
+            <div id="mask">
+            </div>
+            <h2>
+                Choose seats by clicking the corresponding seat in the layout below:
+            </h2>
+            <div id="holder">
+                <ul id="place"></ul>
+            </div>
+            <div style="float: left;">
+                <ul id="seatDescription">
+                    <li style="background: url('images/available_seat_img.gif') no-repeat scroll 0 0 transparent;">
+                        Available Seat
+                    </li>
+                    <li style="background: url('images/booked_seat_img.gif') no-repeat scroll 0 0 transparent;">
+                        Booked Seat
+                    </li>
+                    <li style="background: url('images/selected_seat_img.gif') no-repeat scroll 0 0 transparent;">
+                        Selected Seat
+                    </li>
+                    <li>
+                        <input type="button" id="btnShowNew" value="Book" />
+                    </li>
+                </ul>
+            </div>
+            <div style="clear:both;padding-top:25px;">
+                Visit <a href="http://techbrij.com">TechBrij</a> for more details.
+            </div>
+</div>
+
+    <br />
+    <br />
+</div>
+

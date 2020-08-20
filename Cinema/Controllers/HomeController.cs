@@ -16,11 +16,12 @@ namespace Cinema.Controllers
             return View(movieList);
         }
 
-        public ActionResult About()
+        public ActionResult Details(int id)
         {
-            ViewBag.Message = "Your application description page.";
+            //ViewBag.Message = "Your application description page.";
+            OrdenVM orden = business.GenerarOrden(id);
 
-            return View();
+            return View(orden);
         }
 
         public ActionResult Contact()

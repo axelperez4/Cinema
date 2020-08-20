@@ -9,7 +9,7 @@ namespace Cinema
     public partial class Ticket
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Ticket_id { get; set; }
 
         public int Funcion_id { get; set; }

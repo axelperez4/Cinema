@@ -10,17 +10,21 @@
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone-no">
     <!-- CSS files -->
-    <link rel="stylesheet" href="../Content/Custom/plugins.css">
-    <link rel="stylesheet" href="../Content/Custom/style.css">
+    <link rel="stylesheet" href="~/Content/Custom/plugins.css">
+    <link rel="stylesheet" href="~/Content/Custom/style.css">
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/plugins.js"></script>
+    <script src="~/Scripts/plugins2.js"></script>
+    <script src="~/Scripts/custom.js"></script>
 
-    
+
     @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+        @Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
     <!--preloading-->
     <div id="preloader">
-        <img class="logo" src="../Images/la_union_logo1.png" alt="La Union Logo" width="119" height="58">
+        <img class="logo" src="~/Images/la_union_logo1.png" alt="La Union Logo" width="119" height="58">
         <div id="status">
             <span></span>
             <span></span>
@@ -41,7 +45,7 @@
                             <span></span>
                         </div>
                     </div>
-                    <a href="index-2.html"><img class="logo" src="../Images/la_union_logo1.png" alt="" width="119" height="58"></a>
+                    <a href="index-2.html"><img class="logo" src="~/Images/la_union_logo1.png" alt="" width="119" height="58"></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -49,7 +53,7 @@
                         <li class="hidden">
                             <a href="#page-top"></a>
                         </li>
-                        <li><a href="#">Inicio</a></li>
+                        <li>@Html.ActionLink("Inicio", "Index", "Home", null, null)</li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -73,10 +77,7 @@
     </footer>
     <!-- end of footer section-->
 
-    <script src="../Scripts/jquery-3.1.1.js"></script>
-    <script src="../Scripts/plugins.js"></script>
-    <script src="../Scripts/plugins2.js"></script>
-    <script src="../Scripts/custom.js"></script>
+    
 
     @*@Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")*@

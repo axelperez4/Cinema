@@ -140,23 +140,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008180742014_Add boolean flag to Pelicula InitialMigration.cs" />
-    <Compile Include="Migrations\202008180742014_Add boolean flag to Pelicula InitialMigration.Designer.cs">
-      <DependentUpon>202008180742014_Add boolean flag to Pelicula InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008180753257_Second.cs" />
-    <Compile Include="Migrations\202008180753257_Second.Designer.cs">
-      <DependentUpon>202008180753257_Second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008190340452_Entities to upper camel case,add more fields to Pelicula.cs" />
-    <Compile Include="Migrations\202008190340452_Entities to upper camel case,add more fields to Pelicula.Designer.cs">
-      <DependentUpon>202008190340452_Entities to upper camel case,add more fields to Pelicula.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008192220599_Making fields in Peliculas table nulleables.cs" />
-    <Compile Include="Migrations\202008192220599_Making fields in Peliculas table nulleables.Designer.cs">
-      <DependentUpon>202008192220599_Making fields in Peliculas table nulleables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AsientoVM.cs" />
+    <Compile Include="Models\FuncionVM.cs" />
+    <Compile Include="Models\OrdenVM.cs" />
     <Compile Include="Models\PeliculaVM.cs" />
     <Compile Include="Entities\Pelicula.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -176,6 +162,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\ft-bg.jpg" />
     <Content Include="Images\la_union_logo1.png" />
+    <Content Include="Images\mv3.jpg" />
     <Content Include="Images\slider-bg.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -210,6 +197,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -229,20 +217,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202008180742014_Add boolean flag to Pelicula InitialMigration.resx">
-      <DependentUpon>202008180742014_Add boolean flag to Pelicula InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008180753257_Second.resx">
-      <DependentUpon>202008180753257_Second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008190340452_Entities to upper camel case,add more fields to Pelicula.resx">
-      <DependentUpon>202008190340452_Entities to upper camel case,add more fields to Pelicula.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008192220599_Making fields in Peliculas table nulleables.resx">
-      <DependentUpon>202008192220599_Making fields in Peliculas table nulleables.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
