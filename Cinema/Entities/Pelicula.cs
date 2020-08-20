@@ -23,9 +23,9 @@ namespace Cinema
         public bool Activa { get; set; }
         public string Tagline { get; set; }
         public string Descripcion { get; set; }
-        public bool Adultos { get; set; }
-        public int Duracion { get; set; }
-        public decimal Votacion { get; set; }
+        public bool? Adultos { get; set; }
+        public int? Duracion { get; set; }
+        public decimal? Votacion { get; set; }
 
         public string PosterPath { get; set; }
 

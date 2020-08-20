@@ -4,66 +4,266 @@
     ViewBag.Title = "Inicio";
 }
 
-<h2>Bienvenido al cine de Axel</h2>
+<div class="slider movie-items">
+    <div class="container">
+        <div class="top"><p>Las más taquilleras</p></div>
+        <div class="row">
+            <div class="slick-multiItemSlider">
+                <div class="movie-item">
+                    <div class="mv-img">
+                        <a href="#"><img src="images/uploads/slider1.jpg" alt="" width="285" height="437"></a>
+                    </div>
+                    <div class="title-in">
+                        <div class="cate">
+                            <span class="blue"><a href="#">Sci-fi</a></span>
+                        </div>
+                        <h6><a href="#">Interstellar</a></h6>
+                        <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+                    </div>
+                </div>
+                <div class="movie-item">
+                    <div class="mv-img">
+                        <a href="#"><img src="images/uploads/slider2.jpg" alt="" width="285" height="437"></a>
+                    </div>
+                    <div class="title-in">
+                        <div class="cate">
+                            <span class="yell"><a href="#">action</a></span>
+                        </div>
+                        <h6><a href="#">The revenant</a></h6>
+                        <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+                    </div>
+                </div>
+                <div class="movie-item">
+                    <div class="mv-img">
+                        <a href="#"><img src="images/uploads/slider3.jpg" alt="" width="285" height="437"></a>
+                    </div>
+                    <div class="title-in">
+                        <div class="cate">
+                            <span class="green"><a href="#">comedy</a></span>
+                        </div>
+                        <h6><a href="#">Die hard</a></h6>
+                        <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+                    </div>
+                </div>
+                <div class="movie-item">
+                    <div class="mv-img">
+                        <a href="#"><img src="images/uploads/slider4.jpg" alt="" width="285" height="437"></a>
+                    </div>
+                    <div class="title-in">
+                        <div class="cate">
+                            <span class="blue"><a href="#">Sci-fi</a></span> <span class="orange"><a href="#">advanture</a></span>
+                        </div>
+                        <h6><a href="#">The walk</a></h6>
+                        <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+                    </div>
+                </div>
+                <div class="movie-item">
+                    <div class="mv-img">
+                        <a href="#"><img src="images/uploads/slider1.jpg" alt="" width="285" height="437"></a>
+                    </div>
+                    <div class="title-in">
+                        <div class="cate">
+                            <span class="blue"><a href="#">Sci-fi</a></span>
+                        </div>
+                        <h6><a href="#">Interstellar</a></h6>
+                        <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+                    </div>
+                </div>
+                <div class="movie-item">
+                    <div class="mv-img">
+                        <a href="#"><img src="images/uploads/slider2.jpg" alt="" width="285" height="437"></a>
+                    </div>
+                    <div class="title-in">
+                        <div class="cate">
+                            <span class="yell"><a href="#">action</a></span>
+                        </div>
+                        <h6><a href="#">The revenant</a></h6>
+                        <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+                    </div>
+                </div>
+                <div class="movie-item">
+                    <div class="mv-img">
+                        <img src="images/uploads/slider3.jpg" alt="" width="285" height="437">
+                    </div>
+                    <div class="title-in">
+                        <div class="cate">
+                            <span class="green"><a href="#">comedy</a></span>
+                        </div>
+                        <h6><a href="#">Die hard</a></h6>
+                        <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+                    </div>
+                </div>
+                <div class="movie-item">
+                    <div class="mv-img">
+                        <img src="images/uploads/slider4.jpg" alt="" width="285" height="437">
+                    </div>
+                    <div class="title-in">
+                        <div class="cate">
+                            <span class="blue"><a href="#">Sci-fi</a></span> <span class="orange"><a href="#">advanture</a></span>
+                        </div>
+                        <h6><a href="#">The walk</a></h6>
+                        <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+                    </div>
+                </div>
+                <div class="movie-item">
+                    <div class="mv-img">
+                        <img src="images/uploads/slider3.jpg" alt="" width="285" height="437">
+                    </div>
+                    <div class="title-in">
+                        <div class="cate">
+                            <span class="green"><a href="#">comedy</a></span>
+                        </div>
+                        <h6><a href="#">Die hard</a></h6>
+                        <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="buster-light">
+    <div class="page-single movie_list">
+        <div class="container">
+            <div class="row ipad-width2">
+                <div class="col-md-8 col-sm-12 col-xs-12">
 
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tagline)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Overview)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Adult)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Runtime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VoteAvarage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PosterPath)
-        </th>
-        <th></th>
-    </tr>
+                    @foreach (var movie in Model)
+                    {
+                    <div class="movie-item-style-2">
+                        <img src="@String.Format("https://image.tmdb.org/t/p/w500/{0}", movie.PosterPath)" alt="">
+                        <div class="mv-item-infor">
+                            <h6><a href="moviesingle.html">@movie.Title </a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>@movie.VoteAvarage</span> /10</p>
+                            <p class="describe">@movie.Overview</p>
+                            <p class="run-time"> Run Time: @movie.Runtime’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
+                            <p>Director: <a href="#">Joss Whedon</a></p>
+                            <p>Stars: <a href="#">Robert Downey Jr.,</a> <a href="#">Chris Evans,</a> <a href="#">  Chris Hemsworth</a></p>
+                        </div>
+                    </div>
+                    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tagline)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Overview)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Adult)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Runtime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VoteAvarage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PosterPath)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+                    @*<div class="movie-item-style-2">
+                        <img src="images/uploads/mv1.jpg" alt="">
+                        <div class="mv-item-infor">
+                            <h6><a href="moviesingle.html">oblivion <span>(2012)</span></a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+                            <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...</p>
+                            <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
+                            <p>Director: <a href="#">Joss Whedon</a></p>
+                            <p>Stars: <a href="#">Robert Downey Jr.,</a> <a href="#">Chris Evans,</a> <a href="#">  Chris Hemsworth</a></p>
+                        </div>
+                    </div>
+                    <div class="movie-item-style-2">
+                        <img src="images/uploads/mv2.jpg" alt="">
+                        <div class="mv-item-infor">
+                            <h6><a href="moviesingle.html">into the wild <span>(2014)</span></a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+                            <p class="describe">As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat...</p>
+                            <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
+                            <p>Director: <a href="#">Anthony Russo,</a><a href="#">Joe Russo</a></p>
+                            <p>Stars: <a href="#">Chris Evans,</a> <a href="#">Samuel L. Jackson,</a> <a href="#">  Scarlett Johansson</a></p>
+                        </div>
+                    </div>
+                    <div class="movie-item-style-2">
+                        <img src="images/uploads/mv3.jpg" alt="">
+                        <div class="mv-item-infor">
+                            <h6><a href="moviesingle.html">blade runner  <span>(2015)</span></a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
+                            <p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
+                            <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
+                            <p>Director: <a href="#">Peyton Reed</a></p>
+                            <p>Stars: <a href="#">Paul Rudd,</a> <a href="#"> Michael Douglas</a></p>
+                        </div>
+                    </div>
+                    <div class="movie-item-style-2">
+                        <img src="images/uploads/mv4.jpg" alt="">
+                        <div class="mv-item-infor">
+                            <h6><a href="moviesingle.html">Mulholland pride<span> (2013)  </span></a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>7.2</span> /10</p>
+                            <p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
+                            <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
+                            <p>Director: <a href="#">Shane Black</a></p>
+                            <p>Stars: <a href="#">Robert Downey Jr., </a> <a href="#">  Guy Pearce,</a><a href="#">Don Cheadle</a></p>
+                        </div>
+                    </div>
+                    <div class="movie-item-style-2">
+                        <img src="images/uploads/mv5.jpg" alt="">
+                        <div class="mv-item-infor">
+                            <h6><a href="moviesingle.html">skyfall: evil of boss<span> (2013)  </span></a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>7.0</span> /10</p>
+                            <p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
+                            <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
+                            <p>Director: <a href="#">Alan Taylor</a></p>
+                            <p>Stars: <a href="#">Chris Hemsworth,  </a> <a href="#">  Natalie Portman,</a><a href="#">Tom Hiddleston</a></p>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
 
-</table>
+
+    @*<h2>Bienvenido al cine de Axel</h2>*@
+
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+    @*<table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tagline)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Overview)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Adult)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Runtime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VoteAvarage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PosterPath)
+                </th>
+                <th></th>
+            </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tagline)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Overview)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adult)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Runtime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VoteAvarage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PosterPath)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                </td>
+            </tr>
+        }*@
+
+    </table>
