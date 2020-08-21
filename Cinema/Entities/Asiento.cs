@@ -10,10 +10,6 @@ namespace Cinema
     public partial class Asiento
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Asiento()
-        {
-            Tickets = new List<Ticket>();
-        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -26,8 +22,5 @@ namespace Cinema
         public string Ubicacion { get; set; }
 
         public virtual Sala Sala { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual List<Ticket> Tickets { get; set; }
     }
 }

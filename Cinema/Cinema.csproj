@@ -160,6 +160,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\armchair.png" />
+    <Content Include="Images\available_seat_img.gif" />
+    <Content Include="Images\cinema_screen.png" />
     <Content Include="Images\ft-bg.jpg" />
     <Content Include="Images\la_union_logo1.png" />
     <Content Include="Images\mv3.jpg" />

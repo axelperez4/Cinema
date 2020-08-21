@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -69,12 +70,13 @@ namespace Cinema
         public OrdenVM GenerarOrden(int id)
         {
             var orden = new OrdenVM();
-            var cinemaContext = new CinemaDbContext();
-            var pelicula = cinemaContext.Peliculas.First(x => x.Pelicula_id == id);
-            var funciones = pelicula.Funciones.Where(x => x.Fecha < DateTime.Now).ToList();
+            var cinemaDb = new CinemaDbContext();
+            var pelicula = cinemaDb.Peliculas.First(x => x.Pelicula_id == id);
+            var funciones = pelicula.Funciones.Where(x => x.Fecha < DateTime.Now).ToList().OrderBy(x => x.Fecha);
 
             //Asignar valores para alimentar dropdowns
             orden.Movie = GenerarPeliculaVM(pelicula);
+            orden.Asientos = ObtenerAsientos(cinemaDb, pelicula.Pelicula_id);
             orden.Funciones = funciones.Select(x => 
                                 new System.Web.Mvc.SelectListItem
                                 {
@@ -82,7 +84,15 @@ namespace Cinema
                                     Value = x.Funcion_id.ToString()
                                 }
             );
+            
             return orden;
+        }
+
+        private IEnumerable<AsientoVM> ObtenerAsientos(CinemaDbContext cinemaDb, int pelicula_id)
+        {
+            var asientos = cinemaDb.Database.SqlQuery<AsientoVM>("exec ObtenerAsientos @pelicula_id", new object[] { new SqlParameter("pelicula_id", pelicula_id) }).ToList();
+
+            return asientos;
         }
 
         private object GetApiKey()

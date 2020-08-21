@@ -11,12 +11,10 @@ namespace Cinema
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Ticket_id { get; set; }
-
         public int Funcion_id { get; set; }
-
-        public int Asiento_id { get; set; }
-
-        public virtual Asiento Asiento { get; set; }
+        [Required]
+        [StringLength(4)]
+        public string Asiento_ubicacion { get; set; }
 
         public virtual Funcion Funcion { get; set; }
     }

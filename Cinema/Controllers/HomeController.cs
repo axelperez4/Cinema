@@ -24,11 +24,11 @@ namespace Cinema.Controllers
             return View(orden);
         }
 
-        public ActionResult Contact()
+        public void Confirm(int funcion_id, string asiento)
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            RedirectToAction("Index");
         }
     }
 }

@@ -7804,14 +7804,14 @@ p.ceb-single {
   border-color: #d0dae4;
 }
 header {
-  position: absolute;
-  z-index: 100;
-  width: 100%;
-  background-color: transparent;
-  -webkit-transition: all 0.5s ease-out;
-  -moz-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
-  transition: all 0.5s ease-out;
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    background-color: #0f2133;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
 }
 @media (max-width: 991px) {
   header {
@@ -8301,4 +8301,67 @@ footer.full-width-ft .ft-copyright {
   color: #8c9296;
   font-family: 'Dosis', sans-serif;
   font-weight: 700;
+}
+
+
+#place {
+    position: relative;
+    margin: 7px;
+}
+
+    #place .available-seat:hover {
+        background-color: #c2e0ff;
+    }
+
+    #place .cinema-screen {
+        width: 70%;
+        height: 20%;
+        display: block;
+    }
+
+#holder table {
+    width: auto;
+    border-spacing: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#holder td {
+    border-radius: 5px;
+}
+
+#place .available-seat {
+    background-image: url('../../Images/armchair.png');
+    background-size: cover;
+    height: 33px;
+    width: 33px;
+    /*display: block;*/
+}
+
+#place .blocked-seat {
+    background-image: url('../../Images/armchair.png');
+    background-size: cover;
+    background-color: #ff172a;
+    height: 33px;
+    width: 33px;
+    /*display: block;*/
+}
+
+#place .selected-seat {
+    background-image: url('../../Images/armchair.png');
+    background-size: cover;
+    background-color: #5ae866;
+    height: 33px;
+    width: 33px;
+    /*display: block;*/
+}
+
+#seatDescription li {
+    verticle-align: middle;
+    list-style: none outside none;
+    padding-left: 35px;
+    height: 35px;
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
 }

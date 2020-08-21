@@ -8,8 +8,8 @@ namespace Cinema.Models
 {
     public class AsientoVM
     {
-        public int? Id { get; set; }
-        public int? Sala_Id { get; set; }
+        public int Funcion_Id { get; set; }
         public string Ubicacion { get; set; }
+        public bool Disponible { get; set; }
     }
 }

@@ -20,10 +20,6 @@ namespace Cinema
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Asiento>()
-                .HasMany(e => e.Tickets)
-                .WithRequired(e => e.Asiento)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Funcion>()
                 .HasMany(e => e.Tickets)

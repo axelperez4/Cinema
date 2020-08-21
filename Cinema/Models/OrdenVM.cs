@@ -11,7 +11,9 @@ namespace Cinema.Models
     public class OrdenVM
     {
         public int FuncionId { get; set; }
+        public string Asiento_ubicacion { get; set; }
         public PeliculaVM Movie { get; set; }
         public IEnumerable<SelectListItem> Funciones { get; set; }
+        public IEnumerable<AsientoVM> Asientos { get; set; }
     }
 }
