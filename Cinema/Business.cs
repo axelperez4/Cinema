@@ -72,7 +72,7 @@ namespace Cinema
             var orden = new OrdenVM();
             var cinemaDb = new CinemaDbContext();
             var pelicula = cinemaDb.Peliculas.First(x => x.Pelicula_id == id);
-            var funciones = pelicula.Funciones.Where(x => x.Fecha < DateTime.Now).ToList().OrderBy(x => x.Fecha);
+            var funciones = pelicula.Funciones.Where(x => x.Fecha > DateTime.Now).ToList().OrderBy(x => x.Fecha);
 
             //Asignar valores para alimentar dropdowns
             orden.Movie = GenerarPeliculaVM(pelicula);

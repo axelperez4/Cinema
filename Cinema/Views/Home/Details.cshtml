@@ -28,13 +28,15 @@
             </div>
         </div>
     </div>
-    @Html.BeginForm("Confirm", "Home", new { funcion_id = Model.FuncionId, asiento = Model.Asiento_ubicacion })
-    {
+    @*@Html.BeginForm("Confirm", "Home", new { funcion_id = Model.FuncionId, asiento = Model.Asiento_ubicacion })
+    {*@
     <div class="container">
         <h1>Elige tu función:</h1>
         <hr />
-        @Html.DropDownListFor(x => x.FuncionId, Model.Funciones)
+        @Html.DropDownListFor(x => x.FuncionId, Model.Funciones, new { @onchange = "actualizarAsientos(this.value)" })
     </div>
+    <br />
+    <br />
     <br />
     <div class="container">
         <h1>Elige tu asiento:</h1>
@@ -46,11 +48,11 @@
                     Asiento Disponible
                 </li>
                 <li>
-                    <img src="~/Images/armchair.png" width="25" style="background-color: #ff172a" />
+                    <img src="~/Images/armchair.png" width="25" style="background-color: #ff172a; border-radius: 5px;" />
                     Asiento Ocupado
                 </li>
                 <li>
-                    <img src="~/Images/armchair.png" width="25" style="background-color: #5ae866" />
+                    <img src="~/Images/armchair.png" width="25" style="background-color: #5ae866; border-radius: 5px;" />
                     Asiento Seleccionado
                 </li>
             </ul>
@@ -73,7 +75,7 @@
                             }
                             else
                             {
-                                <td class="blocked-seat"></td>
+                                <td class="blocked-seat" id="@Model.Asientos.ElementAt(counter).Ubicacion"></td>
                             }
                             counter++;
                         }
@@ -97,5 +99,30 @@
         $(this).toggleClass('selected-seat');
         $("#Asiento_ubicacion").val($(this).attr('id'));
     });
+
+    function actualizarAsientos(val) {
+        var ocupados = [];
+        @foreach (var item in Model.Asientos.Where(x => !x.Disponible))
+        {
+            @:ocupados.push({ funcion: '@item.Funcion_Id', asiento: '@item.Ubicacion' });
+        }
+
+        $('.blocked-seat').removeClass('blocked-seat').addClass('available-seat');
+        for (i = 0; i < ocupados.length; i++) {
+            if (ocupados[i].funcion == val) {
+                $("#" + ocupados[i].asiento).addClass("blocked-seat").removeClass("available-seat");
+            }
+        }
+        $('.blocked-seat').prop("onclick", null).off("click");
+        restablecerListener();
+    };
+
+        function restablecerListener() {
+            $('.available-seat').on('click', function () {
+                $("td").removeClass('selected-seat');
+                $(this).toggleClass('selected-seat');
+                $("#Asiento_ubicacion").val($(this).attr('id'));
+            });
+        }
 </script>
 
