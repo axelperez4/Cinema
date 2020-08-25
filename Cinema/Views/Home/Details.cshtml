@@ -18,7 +18,7 @@
                     <div class="movie-item-style-2">
                         <img src="@String.Format("https://image.tmdb.org/t/p/w500/{0}", Model.Movie.PosterPath)" alt="">
                         <div class="mv-item-infor">
-                            <h6>@Html.ActionLink(Model.Movie.Title, "Details", new { Id = Model.Movie.Id })</h6>
+                            <h6>@Html.ActionLink(Model.Movie.Title, "Details", new { Id = Model.Movie.Id }, new { id = "tituloPelicula" })</h6>
                             <p class="rate"><i class="ion-android-star"></i><span>@Model.Movie.VoteAvarage</span> /10</p>
                             <p class="describe">@Model.Movie.Overview</p>
                             <p class="run-time"> Duración: @Model.Movie.Runtime’</p>
@@ -28,76 +28,91 @@
             </div>
         </div>
     </div>
-    @*@Html.BeginForm("Confirm", "Home", new { funcion_id = Model.FuncionId, asiento = Model.Asiento_ubicacion })
-    {*@
-    <div class="container">
-        <h1>Elige tu función:</h1>
-        <hr />
-        @Html.DropDownListFor(x => x.FuncionId, Model.Funciones, new { @onchange = "actualizarAsientos(this.value)" })
-    </div>
-    <br />
-    <br />
-    <br />
-    <div class="container">
-        <h1>Elige tu asiento:</h1>
-        <hr />
-        <div style="margin-left: auto; margin-right: auto;">
-            <ul id="seatDescription">
-                <li>
-                    <img src="~/Images/armchair.png" width="25" />
-                    Asiento Disponible
-                </li>
-                <li>
-                    <img src="~/Images/armchair.png" width="25" style="background-color: #ff172a; border-radius: 5px;" />
-                    Asiento Ocupado
-                </li>
-                <li>
-                    <img src="~/Images/armchair.png" width="25" style="background-color: #5ae866; border-radius: 5px;" />
-                    Asiento Seleccionado
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="container">
-        <div id="holder">
+    @if (Model.Funciones.Any())
+    {
+        using (Html.BeginForm("Confirm", "Home", FormMethod.Post, new { id = "orden" }))
+        {
+            <div class="container">
+                <h1>Elige tu función:</h1>
+                <hr />
+                @Html.DropDownListFor(x => x.FuncionId, Model.Funciones, new { @onchange= "actualizarAsientos(this.value)"})
+            </div>
             <br />
             <br />
-            <table id="place">
-                @{ int counter = 0;}
-                @for (int i = 1; i < 6; i++)
-                {
-                    <tr>
-                        @for (int j = 1; j < 6; j++)
+            <br />
+            <div class="container">
+                <h1>Elige tu asiento:</h1>
+                <hr />
+                <div style="margin-left: auto; margin-right: auto;">
+                    <ul id="seatDescription">
+                        <li>
+                            <img src="~/Images/armchair.png" width="25" />
+                            Asiento Disponible
+                        </li>
+                        <li>
+                            <img src="~/Images/armchair.png" width="25" style="background-color: #ff172a; border-radius: 5px;" />
+                            Asiento Ocupado
+                        </li>
+                        <li>
+                            <img src="~/Images/armchair.png" width="25" style="background-color: #5ae866; border-radius: 5px;" />
+                            Asiento Seleccionado
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container">
+                <div id="holder">
+                    <br />
+                    <br />
+                    <table id="place">
+                        @{ int counter = 0;}
+                        @for (int i = 1; i < 6; i++)
                         {
-                            if (Model.Asientos.ElementAt(counter).Disponible)
-                            {
-                                <td class="available-seat" id="@Model.Asientos.ElementAt(counter).Ubicacion"></td>
-                            }
-                            else
-                            {
-                                <td class="blocked-seat" id="@Model.Asientos.ElementAt(counter).Ubicacion"></td>
-                            }
-                            counter++;
+                            <tr>
+                                @for (int j = 1; j < 6; j++)
+                                {
+                                    if (Model.Asientos.ElementAt(counter).Disponible)
+                                    {
+                                        <td class="available-seat" id="@Model.Asientos.ElementAt(counter).Ubicacion"></td>
+                                    }
+                                    else
+                                    {
+                                        <td class="blocked-seat" id="@Model.Asientos.ElementAt(counter).Ubicacion"></td>
+                                    }
+                                    counter++;
+                                }
+                            </tr>
                         }
-                    </tr>
-                }
-            </table>
-            <img src="~/Images/cinema_screen.png" style="width: 300px; height: 70px; margin-left:auto; margin-right:auto; display: block;" />
+                    </table>
+                    <img src="~/Images/cinema_screen.png" style="width: 300px; height: 70px; margin-left:auto; margin-right:auto; display: block;" />
+                </div>
+
+
+
+
+            </div>
+            @Html.TextBoxFor(m => m.Asiento_ubicacion, new { style = "visibility:hidden" })
+            <input type="submit" value="Aceptar">
+        }
+    }
+    else
+    {
+        <div class="container">
+            <h1>No hay funciones disponibles</h1>
         </div>
-        @Html.TextBoxFor(m => m.Asiento_ubicacion, new { style = "visibility:hidden" })
-        <input type="submit" value="Aceptar">
-
-    </div>
-
+    }
     <br />
     <br />
+    <a href="Action/RedirectPage" data-file="Home/GenerarPdf" class="file-download"></a>
 </div>
 
 <script>
+
     $('.available-seat').on('click', function () {
         $("td").removeClass('selected-seat');
         $(this).toggleClass('selected-seat');
         $("#Asiento_ubicacion").val($(this).attr('id'));
+
     });
 
     function actualizarAsientos(val) {
@@ -123,6 +138,29 @@
                 $(this).toggleClass('selected-seat');
                 $("#Asiento_ubicacion").val($(this).attr('id'));
             });
-        }
+    }
+
+    $('#orden').submit(function (event) {
+        event.preventDefault();
+        var form = $(this)[0];
+
+        $.confirm({
+            title: 'Confirmar su orden',
+            content: 'Desea confirmar su pedido para la siguiete funcion: '
+                + '<p>' + $('#FuncionId').children('option:selected').text() + '</p>'
+                + 'en el asiento ' + $("#Asiento_ubicacion").val() + ' y película <p>' + $('#tituloPelicula').text() + '</p>',
+            theme: 'supervan',
+            buttons: {
+                Confirmar: function () {
+                    window.open('../../Home/GenerarPdf' + '?func=' + $('#FuncionId').children('option:selected').val() + '&ubi=' + $("#Asiento_ubicacion").val() , '_blank');
+                    form.submit();
+                },
+                Cancelar: function () {
+                    jconfirm.instances[0].close();
+                }
+            }
+        });
+    });
+
 </script>
 

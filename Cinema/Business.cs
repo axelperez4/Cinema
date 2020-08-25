@@ -1,8 +1,11 @@
 ﻿using Cinema.Models;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -67,6 +70,55 @@ namespace Cinema
             return VmMovieList;
         }
 
+        internal MemoryStream GenerarPdf(int funcionId, string asiento_ubicacion)
+        {
+            var cinemaContext = new CinemaDbContext();
+            var funcion = cinemaContext.Funciones.First(x => x.Funcion_id == funcionId);
+
+            MemoryStream workStream = new MemoryStream();
+            Document document = new Document();
+            PdfWriter.GetInstance(document, workStream).CloseStream = false;
+
+            document.Open();
+            document.Add(new Paragraph("Cinema de Axel"));
+            document.Add(new Paragraph("Puede presentar el código QR mostrado abajo para ingresar a sala. La información de su función es la siguiente:"));
+            document.Add(new Paragraph(String.Format("Fecha:{0} \n Hora: {1} \n Asiento: {2} \n Sala: {3}, Pelicula: {4}",
+                                                        funcion.Fecha.ToShortDateString(),
+                                                        funcion.Fecha.TimeOfDay.ToString(),
+                                                        asiento_ubicacion,
+                                                        funcion.Sala_id,
+                                                        funcion.Pelicula.Titulo)));
+            document.Add(Image.GetInstance(@"C:\Users\axelp\Documents\Axel\Cine de Axel\Cinema\Cinema\Images\qr_launion.png"));
+            document.Close();
+
+            byte[] byteInfo = workStream.ToArray();
+            workStream.Write(byteInfo, 0, byteInfo.Length);
+            workStream.Position = 0;
+
+            return workStream;
+        }
+
+        public TicketVM GenerarTicket(int funcionId, string asiento_ubicacion)
+        {
+            var cinemaContext = new CinemaDbContext();
+            var ticket = new Ticket()
+            {
+                Funcion_id = funcionId,
+                Asiento_ubicacion = asiento_ubicacion
+            };
+            cinemaContext.Tickets.Add(ticket);
+            cinemaContext.SaveChanges();
+
+            var ticketVM = new TicketVM()
+            {
+                Funcion_Id = ticket.Funcion_id,
+                Ubicacion = ticket.Asiento_ubicacion,
+                Fecha = cinemaContext.Funciones.First(x => x.Funcion_id == funcionId).Fecha
+            };
+
+            return ticketVM;
+        }
+
         public OrdenVM GenerarOrden(int id)
         {
             var orden = new OrdenVM();
@@ -80,7 +132,7 @@ namespace Cinema
             orden.Funciones = funciones.Select(x => 
                                 new System.Web.Mvc.SelectListItem
                                 {
-                                    Text = String.Format("{0} | {1} | Q.{2}", x.Fecha.ToShortDateString(), x.Fecha.TimeOfDay.ToString(), x.Precio.ToString()),
+                                    Text = String.Format("Fecha: {0} | Hora: {1} | Precio: Q.{2}", x.Fecha.ToShortDateString(), x.Fecha.TimeOfDay.ToString(), x.Precio.ToString()),
                                     Value = x.Funcion_id.ToString()
                                 }
             );

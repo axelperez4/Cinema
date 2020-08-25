@@ -1,6 +1,7 @@
 ﻿using Cinema.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,11 +25,19 @@ namespace Cinema.Controllers
             return View(orden);
         }
 
-        public void Confirm(int funcion_id, string asiento)
+        public ActionResult Confirm(int FuncionId, string Asiento_ubicacion)
         {
-            ViewBag.Message = "Your contact page.";
+            TicketVM ticket = business.GenerarTicket(FuncionId, Asiento_ubicacion);
 
-            RedirectToAction("Index");
+            return RedirectToAction("Index");
+        }
+
+        public FileStreamResult GenerarPdf(int func, string ubi)
+        {
+            MemoryStream stream = business.GenerarPdf(func, ubi);
+            
+
+            return new FileStreamResult(stream, "application/pdf");
         }
     }
 }

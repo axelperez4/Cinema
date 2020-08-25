@@ -8157,7 +8157,7 @@ header#headerv3-light {
 }
 footer {
     /*background: url('../Images/ft-bg.jpg') no-repeat;*/
-    background-image: url('~/Images/ft-bg.jpg');
+    background-image: url('../../Images/ft-bg.jpg');
     background-position: center;
     background-size: cover;
 }
