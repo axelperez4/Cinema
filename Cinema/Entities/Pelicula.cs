@@ -26,6 +26,8 @@ namespace Cinema
         public bool? Adultos { get; set; }
         public int? Duracion { get; set; }
         public decimal? Votacion { get; set; }
+        public string Generos { get; set; } //Idealmente, habría una tabla géneros y una relación muchos a muchos, hecho así por brevedad.
+        public string Lanzamiento { get; set; }
 
         public string PosterPath { get; set; }
 

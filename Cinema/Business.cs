@@ -55,6 +55,8 @@ namespace Cinema
                         movie.Duracion = movieData.Runtime ?? 0;
                         movie.Adultos = movieData.Adult;
                         movie.Descripcion = movieData.Overview;
+                        movie.Generos = String.Join(", ", movieData.genres.Select(x => x.Name));
+                        movie.Lanzamiento = movieData.ReleaseDate;
                     }
                     else
                     {
@@ -65,7 +67,7 @@ namespace Cinema
             }
 
             cinemaContext.SaveChanges();
-            var VmMovieList = listOfAvailableMovies.Select(x => GenerarPeliculaVM(x)).ToList();
+            var VmMovieList = listOfAvailableMovies.Select(x => GenerarPeliculaVM(x)).OrderByDescending(x => x.ReleaseDate).ToList();
 
             return VmMovieList;
         }
@@ -132,11 +134,13 @@ namespace Cinema
             orden.Funciones = funciones.Select(x => 
                                 new System.Web.Mvc.SelectListItem
                                 {
-                                    Text = String.Format("Fecha: {0} | Hora: {1} | Precio: Q.{2}", x.Fecha.ToShortDateString(), x.Fecha.TimeOfDay.ToString(), x.Precio.ToString()),
+                                    Text = String.Format("<b>Fecha:</b> {0} | <b>Hora:</b> {1} | <b>Precio:</b> Q.{2}", x.Fecha.ToShortDateString(), x.Fecha.TimeOfDay.ToString(), x.Precio.ToString()),
                                     Value = x.Funcion_id.ToString()
                                 }
             );
-            
+            if (funciones.Any())
+                orden.FuncionEconomica = funciones.OrderBy(x => x.Precio).ThenBy(x => x.Fecha).FirstOrDefault().Funcion_id;
+
             return orden;
         }
 
@@ -168,7 +172,9 @@ namespace Cinema
                 VoteAvarage = pelicula.Votacion,
                 Runtime = pelicula.Duracion,
                 Adult = pelicula.Adultos,
-                PosterPath = pelicula.PosterPath
+                PosterPath = pelicula.PosterPath,
+                Generos = pelicula.Generos,
+                ReleaseDate = pelicula.Lanzamiento
             };
         }
 

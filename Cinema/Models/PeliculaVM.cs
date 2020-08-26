@@ -16,8 +16,19 @@ namespace Cinema.Models
         public int? Runtime { get; set; }
         [JsonProperty("vote_average")]
         public decimal? VoteAvarage { get; set; }
+        [JsonProperty("release_date")]
+        public string ReleaseDate { get; set; }
+        public string Generos { get; set; }
 
         [JsonProperty("poster_path")]
         public string PosterPath { get; set; }
+
+        public List<Genres> genres { get; set; }
+    }
+
+    public class Genres
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
     }
 }

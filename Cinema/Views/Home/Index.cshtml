@@ -27,6 +27,8 @@
 </div>*@
 <br />
 <br />
+<br />
+<br />
 <div class="buster-light">
     <div class="page-single movie_list">
         <div class="container">
@@ -35,15 +37,19 @@
 
                     @foreach (var movie in Model)
                     {
-                    <div class="movie-item-style-2">
-                        <img src="@String.Format("https://image.tmdb.org/t/p/w500/{0}", movie.PosterPath)" alt="">
-                        <div class="mv-item-infor">
-                            <h6>@Html.ActionLink(movie.Title, "Details", new { Id = movie.Id })</h6>
-                            <p class="rate"><i class="ion-android-star"></i><span>@movie.VoteAvarage</span> /10</p>
-                            <p class="describe">@movie.Overview</p>
-                            <p class="run-time"> Duración: @movie.Runtime’</p>
+                        <div class="movie-item-style-2">
+                            <img src="@String.Format("https://image.tmdb.org/t/p/w500/{0}", movie.PosterPath)" alt="">
+                            <div class="mv-item-infor">
+                                <h6>@Html.ActionLink(movie.Title, "Details", new { Id = movie.Id })</h6>
+                                <p class="rate"><i class="ion-android-star"></i><span>@movie.VoteAvarage</span> /10</p>
+                                <p class="describe">@movie.Overview</p>
+                                <p class="run-time"> <b>Duración:</b> @movie.Runtime’     <span><b>Lanzamiento:</b> @movie.ReleaseDate </span></p>
+                                <p><span><b>Géneros:</b> @movie.Generos</span></p>
+                            </div>
                         </div>
-                    </div>
+                        <div class="wrapper">
+                            <div class="divider div-transparent div-arrow-down"></div>
+                        </div>
                     }
                 </div>
             </div>

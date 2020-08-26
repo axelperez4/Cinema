@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="http://hernansartorio.com/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+<script src="http://hernansartorio.com/jquery-nice-select/js/fastclick.js"></script>
+<script src="http://hernansartorio.com/jquery-nice-select/js/prism.js"></script>
+
 <br />
 <br />
 <br />
@@ -21,7 +25,8 @@
                             <h6>@Html.ActionLink(Model.Movie.Title, "Details", new { Id = Model.Movie.Id }, new { id = "tituloPelicula" })</h6>
                             <p class="rate"><i class="ion-android-star"></i><span>@Model.Movie.VoteAvarage</span> /10</p>
                             <p class="describe">@Model.Movie.Overview</p>
-                            <p class="run-time"> Duración: @Model.Movie.Runtime’</p>
+                            <p class="run-time"> <b>Duración:</b> @Model.Movie.Runtime’     <span><b>Lanzamiento:</b> @Model.Movie.ReleaseDate </span></p>
+                                <p><span><b>Géneros:</b> @Model.Movie.Generos</span></p>
                         </div>
                     </div>
                 </div>
@@ -35,7 +40,8 @@
             <div class="container">
                 <h1>Elige tu función:</h1>
                 <hr />
-                @Html.DropDownListFor(x => x.FuncionId, Model.Funciones, new { @onchange= "actualizarAsientos(this.value)"})
+                @Html.DropDownListFor(x => x.FuncionId, Model.Funciones, new { @onchange = "actualizarAsientos(this.value)" , @class = "Wide" })
+                <button type="button" id="SeleccionarEconomica" class="btn">Muéstrame la más económica</button>
             </div>
             <br />
             <br />
@@ -66,7 +72,7 @@
                     <br />
                     <table id="place">
                         @{ int counter = 0;}
-                        @for (int i = 1; i < 6; i++)
+                    @for (int i = 1; i < 6; i++)
                         {
                             <tr>
                                 @for (int j = 1; j < 6; j++)
@@ -89,10 +95,9 @@
 
 
 
-
+                @Html.TextBoxFor(m => m.Asiento_ubicacion, new { style = "visibility:hidden" })
+                <button type="submit" class="btn btn-secondary btn-block">Aceptar</button>
             </div>
-            @Html.TextBoxFor(m => m.Asiento_ubicacion, new { style = "visibility:hidden" })
-            <input type="submit" value="Aceptar">
         }
     }
     else
@@ -107,15 +112,25 @@
 </div>
 
 <script>
+    $(document).ready(function () {
+        $('select').niceSelect();
+    });
 
     $('.available-seat').on('click', function () {
         $("td").removeClass('selected-seat');
         $(this).toggleClass('selected-seat');
         $("#Asiento_ubicacion").val($(this).attr('id'));
 
-    });
+                });
+
+    $('#SeleccionarEconomica').on('click', function () {
+        $('#FuncionId').children('option[value = "' + @Model.FuncionEconomica + '"]').prop("selected", "selected");
+        actualizarAsientos($('#FuncionId').children('option:selected').val());
+                });
+
 
     function actualizarAsientos(val) {
+        $('.current').html($('#FuncionId').children('option:selected').text());
         var ocupados = [];
         @foreach (var item in Model.Asientos.Where(x => !x.Disponible))
         {

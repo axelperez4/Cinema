@@ -17,10 +17,14 @@ namespace Cinema.Controllers
             return View(movieList);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
+            if (!id.HasValue)
+            {
+                return RedirectToAction("Index");
+            }
             //ViewBag.Message = "Your application description page.";
-            OrdenVM orden = business.GenerarOrden(id);
+            OrdenVM orden = business.GenerarOrden(id.Value);
 
             return View(orden);
         }
