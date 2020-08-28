@@ -17,6 +17,7 @@ namespace Cinema
         public virtual DbSet<Pelicula> Peliculas { get; set; }
         public virtual DbSet<Sala> Salas { get; set; }
         public virtual DbSet<Ticket> Tickets { get; set; }
+        public virtual DbSet<Extra> Extras { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

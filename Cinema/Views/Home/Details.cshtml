@@ -26,7 +26,7 @@
                             <p class="rate"><i class="ion-android-star"></i><span>@Model.Movie.VoteAvarage</span> /10</p>
                             <p class="describe">@Model.Movie.Overview</p>
                             <p class="run-time"> <b>Duración:</b> @Model.Movie.Runtime’     <span><b>Lanzamiento:</b> @Model.Movie.ReleaseDate </span></p>
-                                <p><span><b>Géneros:</b> @Model.Movie.Generos</span></p>
+                            <p><span><b>Géneros:</b> @Model.Movie.Genres</span></p>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
             <div class="container">
                 <h1>Elige tu función:</h1>
                 <hr />
-                @Html.DropDownListFor(x => x.FuncionId, Model.Funciones, new { @onchange = "actualizarAsientos(this.value)" , @class = "Wide" })
+                @Html.DropDownListFor(x => x.FuncionId, Model.Funciones, new { @onchange = "actualizarAsientos(this.value)", @class = "Wide" })
                 <button type="button" id="SeleccionarEconomica" class="btn">Muéstrame la más económica</button>
             </div>
             <br />
@@ -72,7 +72,7 @@
                     <br />
                     <table id="place">
                         @{ int counter = 0;}
-                    @for (int i = 1; i < 6; i++)
+                        @for (int i = 1; i < 6; i++)
                         {
                             <tr>
                                 @for (int j = 1; j < 6; j++)
@@ -93,9 +93,19 @@
                     <img src="~/Images/cinema_screen.png" style="width: 300px; height: 70px; margin-left:auto; margin-right:auto; display: block;" />
                 </div>
 
-
-
                 @Html.TextBoxFor(m => m.Asiento_ubicacion, new { style = "visibility:hidden" })
+                @Html.HiddenFor(m => m.Extras)
+                @Html.HiddenFor(m => m.Total)
+            </div>
+            <div class="container">
+                <h1>¡Agrega extras a tu reserva!</h1>
+                <hr />
+                @foreach (var extra in Model.ListaExtras)
+                {
+                    <input type="checkbox" id="@extra.Descripcion"  value="@extra.Precio" /> <text> + Q.@extra.Precio @extra.Descripcion </text> <br />
+                }
+                <br />
+                <br />
                 <button type="submit" class="btn btn-secondary btn-block">Aceptar</button>
             </div>
         }
@@ -116,6 +126,11 @@
         $('select').niceSelect();
     });
 
+    $(document).ready(function () {
+        $('header').removeClass('ht-header').addClass('ht-header-solid');
+    });
+
+
     $('.available-seat').on('click', function () {
         $("td").removeClass('selected-seat');
         $(this).toggleClass('selected-seat');
@@ -128,6 +143,23 @@
         actualizarAsientos($('#FuncionId').children('option:selected').val());
                 });
 
+    function getSelected() {
+        var sList = "";
+        var total = 0.00;
+        $('input[type=checkbox]').each(function () {
+            if (this.checked) {
+                sList += this.id + ", ";
+                total += parseFloat(this.value);
+            }
+        });
+        if (sList.length > 1) {
+            sList = sList.substring(0, sList.length - 1);
+        }
+        var precioFuncion = $('#FuncionId').children('option:selected').text().split('Precio:</b> Q.')[1];
+        total += parseFloat(precioFuncion);
+        $("#Extras").val(sList);
+        $("#Total").val(total);
+    };
 
     function actualizarAsientos(val) {
         $('.current').html($('#FuncionId').children('option:selected').text());
@@ -157,17 +189,25 @@
 
     $('#orden').submit(function (event) {
         event.preventDefault();
+        getSelected();
+        if ($("#Asiento_ubicacion").val() == '') {
+            alert('Necesita seleccionar un asiento.');
+            jconfirm.instances[0].close();
+        }
+
         var form = $(this)[0];
 
         $.confirm({
+            icon: 'launion_logo',
             title: 'Confirmar su orden',
-            content: 'Desea confirmar su pedido para la siguiete funcion: '
+            content: 'Desea confirmar su pedido para la siguiente funcion: '
                 + '<p>' + $('#FuncionId').children('option:selected').text() + '</p>'
-                + 'en el asiento ' + $("#Asiento_ubicacion").val() + ' y película <p>' + $('#tituloPelicula').text() + '</p>',
+                + 'en el asiento ' + $("#Asiento_ubicacion").val() + ' y película <p>' + $('#tituloPelicula').text() + '</p>'
+                + 'con un total, incluyendo combos si ha seleccionado, de Q.' + $("#Total").val() ,
             theme: 'supervan',
             buttons: {
                 Confirmar: function () {
-                    window.open('../../Home/GenerarPdf' + '?func=' + $('#FuncionId').children('option:selected').val() + '&ubi=' + $("#Asiento_ubicacion").val() , '_blank');
+                    window.open('../../Home/GenerarPdf' + '?func=' + $('#FuncionId').children('option:selected').val() + '&ubi=' + $("#Asiento_ubicacion").val() + '&tot=' + $("#Total").val() + '&ext=' + $("#Extras").val() , '_blank');
                     form.submit();
                 },
                 Cancelar: function () {

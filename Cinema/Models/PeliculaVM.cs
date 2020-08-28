@@ -18,7 +18,9 @@ namespace Cinema.Models
         public decimal? VoteAvarage { get; set; }
         [JsonProperty("release_date")]
         public string ReleaseDate { get; set; }
-        public string Generos { get; set; }
+        public string Genres { get; set; }
+        [JsonProperty("popularity")]
+        public decimal Popularity { get; set; }
 
         [JsonProperty("poster_path")]
         public string PosterPath { get; set; }

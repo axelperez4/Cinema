@@ -29,18 +29,20 @@ namespace Cinema.Controllers
             return View(orden);
         }
 
-        public ActionResult Confirm(int FuncionId, string Asiento_ubicacion)
+        //public ActionResult Confirm(int FuncionId, string Asiento_ubicacion)
+        public ActionResult Confirm(OrdenVM orden)
         {
-            TicketVM ticket = business.GenerarTicket(FuncionId, Asiento_ubicacion);
+            business.GenerarTicket(orden);
 
             return RedirectToAction("Index");
         }
 
-        public FileStreamResult GenerarPdf(int func, string ubi)
+        public FileStreamResult GenerarPdf(int func, string ubi, string tot, string ext)
         {
-            MemoryStream stream = business.GenerarPdf(func, ubi);
-            
+            MemoryStream stream = business.GenerarPdf(func, ubi, tot, ext);
 
+            Response.ContentType = "pdf/application";
+            Response.AddHeader("Content-Disposition", String.Format("filename=Ticket-{0}-{1}", func, ubi));
             return new FileStreamResult(stream, "application/pdf");
         }
     }

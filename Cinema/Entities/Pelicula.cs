@@ -28,6 +28,7 @@ namespace Cinema
         public decimal? Votacion { get; set; }
         public string Generos { get; set; } //Idealmente, habría una tabla géneros y una relación muchos a muchos, hecho así por brevedad.
         public string Lanzamiento { get; set; }
+        public decimal? Popularidad { get; set; }
 
         public string PosterPath { get; set; }
 

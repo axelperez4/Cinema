@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Cinema.Pelicula>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h2>Administración de películas</h2>
+
+<p>
+    @Html.ActionLink("Añadir nueva", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pelicula_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activa)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Tagline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adultos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duracion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Votacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Generos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lanzamiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Popularidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PosterPath)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pelicula_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activa)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Tagline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adultos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duracion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Votacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Generos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lanzamiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Popularidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PosterPath)
+        </td>*@
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.Pelicula_id }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.Pelicula_id })
+        </td>
+    </tr>
+}
+
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('header').removeClass('ht-header').addClass('ht-header-solid');
+    });
+</script>

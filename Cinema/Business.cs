@@ -53,10 +53,11 @@ namespace Cinema
                         movie.PosterPath = movieData.PosterPath;
                         movie.Votacion = movieData.VoteAvarage ?? 0.00m;
                         movie.Duracion = movieData.Runtime ?? 0;
-                        movie.Adultos = movieData.Adult;
+                        movie.Adultos = movieData.Adult.Value;
                         movie.Descripcion = movieData.Overview;
                         movie.Generos = String.Join(", ", movieData.genres.Select(x => x.Name));
                         movie.Lanzamiento = movieData.ReleaseDate;
+                        movie.Popularidad = movieData.Popularity;
                     }
                     else
                     {
@@ -72,24 +73,37 @@ namespace Cinema
             return VmMovieList;
         }
 
-        internal MemoryStream GenerarPdf(int funcionId, string asiento_ubicacion)
+        internal MemoryStream GenerarPdf(int funcionId, string asiento_ubicacion, string total, string extras)
         {
             var cinemaContext = new CinemaDbContext();
             var funcion = cinemaContext.Funciones.First(x => x.Funcion_id == funcionId);
+
+            string formattedExtras = null;
+            if (!string.IsNullOrWhiteSpace(extras))
+            {
+                formattedExtras += "\n Extras:";
+                foreach (var extra in extras.Split(','))
+                {
+                    formattedExtras += "\n      " + extra.Trim();
+                }
+            }
 
             MemoryStream workStream = new MemoryStream();
             Document document = new Document();
             PdfWriter.GetInstance(document, workStream).CloseStream = false;
 
             document.Open();
+            document.AddTitle("Ticket de cine");
             document.Add(new Paragraph("Cinema de Axel"));
-            document.Add(new Paragraph("Puede presentar el código QR mostrado abajo para ingresar a sala. La información de su función es la siguiente:"));
-            document.Add(new Paragraph(String.Format("Fecha:{0} \n Hora: {1} \n Asiento: {2} \n Sala: {3}, Pelicula: {4}",
+            document.Add(new Paragraph("Puede presentar el código QR mostrado abajo para pagar su reservación en caja. La información de su reserva es la siguiente:"));
+            document.Add(new Paragraph(String.Format("Fecha:{0} \n Hora: {1} \n Asiento: {2} \n Sala: {3} \n Pelicula: {4}{5} \n Total: Q.{6}",
                                                         funcion.Fecha.ToShortDateString(),
                                                         funcion.Fecha.TimeOfDay.ToString(),
                                                         asiento_ubicacion,
                                                         funcion.Sala_id,
-                                                        funcion.Pelicula.Titulo)));
+                                                        funcion.Pelicula.Titulo,
+                                                        formattedExtras ?? "",
+                                                        total)));
             document.Add(Image.GetInstance(@"C:\Users\axelp\Documents\Axel\Cine de Axel\Cinema\Cinema\Images\qr_launion.png"));
             document.Close();
 
@@ -100,25 +114,18 @@ namespace Cinema
             return workStream;
         }
 
-        public TicketVM GenerarTicket(int funcionId, string asiento_ubicacion)
+        public void GenerarTicket(OrdenVM orden)
         {
             var cinemaContext = new CinemaDbContext();
             var ticket = new Ticket()
             {
-                Funcion_id = funcionId,
-                Asiento_ubicacion = asiento_ubicacion
+                Funcion_id = orden.FuncionId,
+                Asiento_ubicacion = orden.Asiento_ubicacion,
+                Total = orden.Total,
+                Extras = orden.Extras
             };
             cinemaContext.Tickets.Add(ticket);
             cinemaContext.SaveChanges();
-
-            var ticketVM = new TicketVM()
-            {
-                Funcion_Id = ticket.Funcion_id,
-                Ubicacion = ticket.Asiento_ubicacion,
-                Fecha = cinemaContext.Funciones.First(x => x.Funcion_id == funcionId).Fecha
-            };
-
-            return ticketVM;
         }
 
         public OrdenVM GenerarOrden(int id)
@@ -127,10 +134,12 @@ namespace Cinema
             var cinemaDb = new CinemaDbContext();
             var pelicula = cinemaDb.Peliculas.First(x => x.Pelicula_id == id);
             var funciones = pelicula.Funciones.Where(x => x.Fecha > DateTime.Now).ToList().OrderBy(x => x.Fecha);
+            var extras = cinemaDb.Extras.Where(x => x.Activo).ToList();
 
             //Asignar valores para alimentar dropdowns
             orden.Movie = GenerarPeliculaVM(pelicula);
             orden.Asientos = ObtenerAsientos(cinemaDb, pelicula.Pelicula_id);
+            orden.ListaExtras = extras;
             orden.Funciones = funciones.Select(x => 
                                 new System.Web.Mvc.SelectListItem
                                 {
@@ -173,7 +182,7 @@ namespace Cinema
                 Runtime = pelicula.Duracion,
                 Adult = pelicula.Adultos,
                 PosterPath = pelicula.PosterPath,
-                Generos = pelicula.Generos,
+                Genres = pelicula.Generos,
                 ReleaseDate = pelicula.Lanzamiento
             };
         }

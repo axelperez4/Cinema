@@ -145,10 +145,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Business.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\PeliculasController.cs" />
     <Compile Include="Entities\Asiento.cs" />
     <Compile Include="CinemaDbContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Entities\Funcion.cs" />
+    <Compile Include="Entities\Extra.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -177,8 +179,10 @@
     <Content Include="Images\available_seat_img.gif" />
     <Content Include="Images\cinema_screen.png" />
     <Content Include="Images\ft-bg.jpg" />
+    <Content Include="Images\la_union_logo2.jpg" />
     <Content Include="Images\la_union_logo1.png" />
     <Content Include="Images\mv3.jpg" />
+    <Content Include="Images\plus18.png" />
     <Content Include="Images\qr_launion.png" />
     <Content Include="Images\slider-bg.jpg" />
     <Content Include="Scripts\bootstrap.js" />
@@ -215,6 +219,11 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Peliculas\Create.cshtml" />
+    <Content Include="Views\Peliculas\Delete.cshtml" />
+    <Content Include="Views\Peliculas\Details.cshtml" />
+    <Content Include="Views\Peliculas\Edit.cshtml" />
+    <Content Include="Views\Peliculas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

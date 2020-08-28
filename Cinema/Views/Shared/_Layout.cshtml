@@ -24,13 +24,13 @@
 </head>
 <body>
     <!--preloading-->
-    @*<div id="preloader">
+    <div id="preloader">
         <img class="logo" src="~/Images/la_union_logo1.png" alt="La Union Logo" width="119" height="58">
         <div id="status">
             <span></span>
             <span></span>
         </div>
-    </div>*@
+    </div>
     <!--end of preloading-->
     <!-- BEGIN | Header -->
     <header class="ht-header">
@@ -46,7 +46,7 @@
                             <span></span>
                         </div>
                     </div>
-                    <a href="index-2.html"><img class="logo" src="~/Images/la_union_logo1.png" alt="" width="119" height="58"></a>
+                    <a href="/Home/Index"><img class="logo" src="~/Images/la_union_logo1.png" alt="" width="119" height="58"></a>
                 </div>
                 
                 <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -78,10 +78,6 @@
     </footer>
     <!-- end of footer section-->
 
-    
-
-    @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

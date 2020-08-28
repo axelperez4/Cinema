@@ -1420,7 +1420,7 @@ input[type="search"] {
 .checkbox input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
   position: absolute;
-  margin-left: -20px;
+  /*margin-left: -20px;*/
   margin-top: 4px \9;
 }
 .radio + .radio,
@@ -1755,7 +1755,7 @@ select[multiple].input-lg {
 }
 @media (min-width: 768px) {
   .form-horizontal .control-label {
-    text-align: right;
+    text-align: left;
     margin-bottom: 0;
     padding-top: 7px;
   }
@@ -4209,6 +4209,11 @@ ul {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+  font-family: 'Dosis', sans-serif;
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 .cate span a {
   font-family: 'Dosis', sans-serif;
@@ -4238,7 +4243,7 @@ ul {
   .movie_list .movie-item-style-2 img,
   .movie_single .movie-item-style-2 img,
   .userfav_list .movie-item-style-2 img {
-    width: 30%;
+    width: 60%;
   }
 }
 .movie-item-style-2 {
@@ -7046,8 +7051,7 @@ p.ceb-single {
   background-color: #00b9ef;
 }
 .slider {
-    /*background: url('../Images/slider-bg.jpg') no-repeat;*/
-    background-image: url('~/Images/slider-bg.jpg');
+    background-image: url('../../Images/slider-bg.jpg');
     background-position: center;
     text-align: center;
     background-size: cover;
@@ -7065,7 +7069,7 @@ p.ceb-single {
   margin-right: 15px;
 }
 .slider .movie-item .title-in {
-  margin-bottom: 45px;
+  /*margin-bottom: 45px;*/
 }
 .slider .movie-item .title-in h6 a {
   font-size: 18px;
@@ -7807,7 +7811,8 @@ header {
     position: absolute;
     z-index: 100;
     width: 100%;
-    background-color: #0f2133;
+    /*background-color: #0f2133;*/
+    background-color: transparent;
     -webkit-transition: all 0.5s ease-out;
     -moz-transition: all 0.5s ease-out;
     -o-transition: all 0.5s ease-out;
@@ -7815,8 +7820,11 @@ header {
 }
 @media (max-width: 991px) {
   header {
-    background-color: #0f2133;
+    background-color: transparent;
   }
+}
+.ht-header-solid {
+    background-color: #0f2133;
 }
 header .navbar-default {
   margin-bottom: 0;
@@ -8290,7 +8298,7 @@ footer.full-width-ft .ft-copyright {
     background: none;
   }
 }
-.ft-copyright-landing {
+.ft-copyrignavbar navbar-default navbar-customlanding {
   text-align: center;
   background-color: #e8e8e8;
   padding: 23px;
@@ -8683,3 +8691,24 @@ select {
         align-content: center;
     }
 }
+
+#plus18 {
+    margin-left: 10px;
+    padding-bottom: 4px;
+    width: 20px;
+}
+
+.neon {
+    /*color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff, 0 0 80px #0ff, 0 0 90px #0ff, 0 0 100px #0ff, 0 0 150px #0ff;*/
+    text-shadow: 0px 0px 5px #fff;
+}
+
+/*.launion_logo {
+    background-image: url(../../Images/la_union_logo1.png);
+    background-size: contain;
+    height: 43px;
+    width: 200px;
+    display: list-item;
+    margin-bottom: 10px;
+}*/

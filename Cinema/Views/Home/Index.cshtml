@@ -4,27 +4,32 @@
     ViewBag.Title = "Inicio";
 }
 
-@*<div class="slider movie-items">
+<div class="slider movie-items">
     <div class="container">
         <div class="top"><p>Las más taquilleras</p></div>
         <div class="row">
             <div class="slick-multiItemSlider">
-                <div class="movie-item">
-                    <div class="mv-img">
-                        <a href="#"><img src="../Images/mv3.jpg" alt="" width="285" height="437"></a>
-                    </div>
-                    <div class="title-in">
-                        <div class="cate">
-                            <span class="blue"><a href="#">Sci-fi</a></span>
+                @foreach (var movie in Model.OrderByDescending(x => x.Popularity).Take(5))
+                {
+                    <div class="movie-item">
+                        <a href="@String.Format("/Home/Details/{0}", movie.Id)">
+                            <div class="mv-img">
+                                <img src="@String.Format("https://image.tmdb.org/t/p/w500/{0}", movie.PosterPath)" alt="" width="285" height="437">
+                            </div>
+                        </a>
+                        <div class="title-in">
+                            <div class="cate">
+                                <span class="yell">@movie.Genres.Split(',').FirstOrDefault()</span>
+                            </div>
+                            @*<h6 class="neon">@Html.ActionLink(movie.Title, "Details", new { Id = movie.Id })</h6>*@
+                            <p><i class="ion-android-star"></i><span>@movie.VoteAvarage</span> /10</p>
                         </div>
-                        <h6><a href="#">Interstellar</a></h6>
-                        <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
                     </div>
-                </div>
+                }
             </div>
         </div>
     </div>
-</div>*@
+</div>
 <br />
 <br />
 <br />
@@ -34,17 +39,23 @@
         <div class="container">
             <div class="row ipad-width2">
                 <div class="col-md-8 col-sm-12 col-xs-12">
-
                     @foreach (var movie in Model)
                     {
                         <div class="movie-item-style-2">
                             <img src="@String.Format("https://image.tmdb.org/t/p/w500/{0}", movie.PosterPath)" alt="">
                             <div class="mv-item-infor">
                                 <h6>@Html.ActionLink(movie.Title, "Details", new { Id = movie.Id })</h6>
-                                <p class="rate"><i class="ion-android-star"></i><span>@movie.VoteAvarage</span> /10</p>
-                                <p class="describe">@movie.Overview</p>
+                                <p class="rate">
+                                    <i class="ion-android-star"></i><span>@movie.VoteAvarage</span> /10
+                                    @if (movie.Adult.Value)
+                                    {
+                                        <img src="~/Images/plus18.png" id="plus18" />
+                                    }
+                                </p>
+                                <p class="describe"> @movie.Overview
+                                </p>
                                 <p class="run-time"> <b>Duración:</b> @movie.Runtime’     <span><b>Lanzamiento:</b> @movie.ReleaseDate </span></p>
-                                <p><span><b>Géneros:</b> @movie.Generos</span></p>
+                                <p><span><b>Géneros:</b> @movie.Genres</span></p>
                             </div>
                         </div>
                         <div class="wrapper">

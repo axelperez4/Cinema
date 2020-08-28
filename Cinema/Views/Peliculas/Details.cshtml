@@ -1,0 +1,131 @@
+﻿@model Cinema.Pelicula
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+
+
+<div class="container">
+    <h2>Detalles</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tagline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tagline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adultos)
+        </dt>
+
+        <dd>
+            @if (Model.Adultos.HasValue && Model.Adultos.Value)
+            {
+                <b>Sí</b>
+            }
+            else
+            {
+                <b>No</b>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duracion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duracion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Votacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Votacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Generos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Generos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lanzamiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lanzamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Popularidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Popularidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PosterPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PosterPath)
+        </dd>
+
+    </dl>
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Pelicula_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('header').removeClass('ht-header').addClass('ht-header-solid');
+    });
+</script>

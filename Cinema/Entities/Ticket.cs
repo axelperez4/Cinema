@@ -15,6 +15,8 @@ namespace Cinema
         [Required]
         [StringLength(4)]
         public string Asiento_ubicacion { get; set; }
+        public string Extras { get; set; }
+        public decimal Total { get; set; }
 
         public virtual Funcion Funcion { get; set; }
     }
