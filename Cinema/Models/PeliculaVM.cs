@@ -13,7 +13,7 @@ namespace Cinema.Models
         public string Tagline { get; set; }
         public string Overview { get; set; }
         public bool? Adult { get; set; }
-        public int? Runtime { get; set; }
+        public int? Runtimes { get; set; }
         [JsonProperty("vote_average")]
         public decimal? VoteAvarage { get; set; }
         [JsonProperty("release_date")]
