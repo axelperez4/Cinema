@@ -145,7 +145,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Business.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ExtrasController.cs" />
     <Compile Include="Controllers\PeliculasController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Entities\Asiento.cs" />
     <Compile Include="CinemaDbContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -171,6 +173,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custom\plugins.css" />
     <Content Include="Content\Custom\style.css" />
+    <Content Include="Content\fonts\fontawesome-webfont93e3.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -187,6 +190,13 @@
     <Content Include="Images\slider-bg.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\fontawesome-webfont93e3.woff" />
+    <Content Include="fonts\fontawesome-webfont93e3.woff2" />
+    <Content Include="Content\fonts\fontawesome-webfont93e3.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont93e3.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont93e3.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont93e3.woff2" />
+    <Content Include="Content\fonts\fontawesome-webfontd41d.eot" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -215,15 +225,17 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Peliculas\Create.cshtml" />
-    <Content Include="Views\Peliculas\Delete.cshtml" />
     <Content Include="Views\Peliculas\Details.cshtml" />
     <Content Include="Views\Peliculas\Edit.cshtml" />
     <Content Include="Views\Peliculas\Index.cshtml" />
+    <Content Include="Views\Extras\Create.cshtml" />
+    <Content Include="Views\Extras\Delete.cshtml" />
+    <Content Include="Views\Extras\Edit.cshtml" />
+    <Content Include="Views\Extras\Index.cshtml" />
+    <Content Include="Views\Reportes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

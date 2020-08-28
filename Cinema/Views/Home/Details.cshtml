@@ -129,6 +129,9 @@
     $(document).ready(function () {
         $('header').removeClass('ht-header').addClass('ht-header-solid');
     });
+    $(document).ready(function () {
+        actualizarAsientos($('#FuncionId').children('option:selected').val());
+    });
 
 
     $('.available-seat').on('click', function () {

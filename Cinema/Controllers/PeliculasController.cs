@@ -10,7 +10,7 @@ using Cinema;
 
 namespace Cinema.Controllers
 {
-    public class PeliculasController : Controller
+    public class PeliculasController : BaseController
     {
         private CinemaDbContext db = new CinemaDbContext();
 
@@ -86,39 +86,5 @@ namespace Cinema.Controllers
             return View(pelicula);
         }
 
-        // GET: Peliculas/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Pelicula pelicula = db.Peliculas.Find(id);
-            if (pelicula == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pelicula);
-        }
-
-        // POST: Peliculas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Pelicula pelicula = db.Peliculas.Find(id);
-            db.Peliculas.Remove(pelicula);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

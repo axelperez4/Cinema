@@ -55,6 +55,16 @@
                             <a href="#page-top"></a>
                         </li>
                         <li>@Html.ActionLink("Inicio", "Index", "Home", null, null)</li>
+                        <li class="dropdown first">
+                            <a class="btn-default dropdown-toggle lv1" data-toggle="dropdown">
+                                Admin <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </a>
+                            <ul class="dropdown-menu level1">
+                                <li>@Html.ActionLink("Peliculas", "Index", "Peliculas", null, null)</li>
+                                <li>@Html.ActionLink("Extras", "Index", "Extras", null, null)</li>
+                                <li>@Html.ActionLink("Reportes", "Index", "Reportes", null, null)</li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 
@@ -79,5 +89,8 @@
     <!-- end of footer section-->
 
     @RenderSection("scripts", required: false)
+
+    <script>
+    </script>
 </body>
 </html>

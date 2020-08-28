@@ -4,11 +4,13 @@ using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Web;
 
 namespace Cinema
@@ -73,6 +75,40 @@ namespace Cinema
             return VmMovieList;
         }
 
+        internal string GenerarReporte()
+        {
+            var cinemaDb = new CinemaDbContext();
+            var con = new SqlConnection(cinemaDb.Database.Connection.ConnectionString);
+            var cmd = new SqlCommand("GenerarReporteDeIngresos", con); //Para editar reporte, cambiar sproc
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 120;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            var sb = new StringBuilder();
+            var tempList = new List<string>();
+
+            //Escribir nombres de columnas
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                tempList.Add(reader.GetName(i));
+            }
+            sb.AppendLine(string.Join("|", tempList));
+
+            while (reader.Read())
+            {
+                tempList.Clear();
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    tempList.Add(reader[i].ToString());
+                }
+                sb.AppendLine(string.Join("|", tempList));
+            }
+
+            return sb.ToString();
+        }
+
         internal MemoryStream GenerarPdf(int funcionId, string asiento_ubicacion, string total, string extras)
         {
             var cinemaContext = new CinemaDbContext();
@@ -96,11 +132,12 @@ namespace Cinema
             document.AddTitle("Ticket de cine");
             document.Add(new Paragraph("Cinema de Axel"));
             document.Add(new Paragraph("Puede presentar el código QR mostrado abajo para pagar su reservación en caja. La información de su reserva es la siguiente:"));
-            document.Add(new Paragraph(String.Format("Fecha:{0} \n Hora: {1} \n Asiento: {2} \n Sala: {3} \n Pelicula: {4}{5} \n Total: Q.{6}",
+            document.Add(new Paragraph(String.Format("Fecha:{0} \n Hora: {1} \n Asiento: {2} \n Sala: {3} {4} \n Pelicula: {5}{6} \n Total: Q.{7}",
                                                         funcion.Fecha.ToShortDateString(),
                                                         funcion.Fecha.TimeOfDay.ToString(),
                                                         asiento_ubicacion,
                                                         funcion.Sala_id,
+                                                        funcion.Sala.Descripcion,
                                                         funcion.Pelicula.Titulo,
                                                         formattedExtras ?? "",
                                                         total)));
@@ -143,7 +180,7 @@ namespace Cinema
             orden.Funciones = funciones.Select(x => 
                                 new System.Web.Mvc.SelectListItem
                                 {
-                                    Text = String.Format("<b>Fecha:</b> {0} | <b>Hora:</b> {1} | <b>Precio:</b> Q.{2}", x.Fecha.ToShortDateString(), x.Fecha.TimeOfDay.ToString(), x.Precio.ToString()),
+                                    Text = String.Format("<b>Fecha:</b> {0} | <b>Hora:</b> {1} | <b>Tipo:</b> {2} | <b>Precio:</b> Q.{3}", x.Fecha.ToShortDateString(), x.Fecha.TimeOfDay.ToString(), x.Sala.Descripcion, x.Precio.ToString()),
                                     Value = x.Funcion_id.ToString()
                                 }
             );

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Cinema.Extra>
+
+@{
+    ViewBag.Title = "Extras";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div class="container">
+    <h2>Administración de extras</h2>
+
+    <p>
+        @Html.ActionLink("Agregar nuevo extra", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Extra_id }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Extra_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<br />
+<br />
+
+<script>
+    $(document).ready(function () {
+        $('header').removeClass('ht-header').addClass('ht-header-solid');
+    });
+</script>

@@ -7819,9 +7819,9 @@ header {
     transition: all 0.5s ease-out;
 }
 @media (max-width: 991px) {
-  header {
-    background-color: transparent;
-  }
+    header {
+        background-color: #0f2133;
+    }
 }
 .ht-header-solid {
     background-color: #0f2133;
@@ -8164,7 +8164,6 @@ header#headerv3-light {
   }
 }
 footer {
-    /*background: url('../Images/ft-bg.jpg') no-repeat;*/
     background-image: url('../../Images/ft-bg.jpg');
     background-position: center;
     background-size: cover;
