@@ -195,6 +195,7 @@ namespace Cinema
             var asientos = cinemaDb.Database.SqlQuery<AsientoVM>("exec ObtenerAsientos @pelicula_id", new object[] { new SqlParameter("pelicula_id", pelicula_id) }).ToList();
 
             return asientos;
+            
         }
 
         private object GetApiKey()

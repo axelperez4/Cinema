@@ -166,6 +166,7 @@
 
     function actualizarAsientos(val) {
         $('.current').html($('#FuncionId').children('option:selected').text());
+        $('.selected-seat').removeClass('selected-seat');
         var ocupados = [];
         @foreach (var item in Model.Asientos.Where(x => !x.Disponible))
         {

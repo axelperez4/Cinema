@@ -54,7 +54,7 @@
                                 </p>
                                 <p class="describe"> @movie.Overview
                                 </p>
-                                <p class="run-time"> <b>Duración:</b> @movie.Runtime.Value'     <span><b>Lanzamiento:</b> @movie.ReleaseDate </span></p>
+                                <p class="run-time"> <b>Duración:</b> @String.Format("{0}",movie.Runtime.Value + 2)'     <span><b>Lanzamiento:</b> @movie.ReleaseDate </span></p>
                                 <p><span><b>Géneros:</b> @movie.Genres</span></p>
                             </div>
                         </div>
